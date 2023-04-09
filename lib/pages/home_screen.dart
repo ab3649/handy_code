@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,6 +9,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String _counter = "";
+  static const platform = MethodChannel("flutter.native/helper");
+  void _openKeyBoard() async {
+    String res = "";
+    try {
+      final String result = await platform.invokeMethod("helloFromNative");
+      res = result;
+    } on PlatformException catch (e) {}
+    setState(() {
+      _counter = res;
+    });
+  }
+
   String _selectedOption = '';
 
   List<String> options = ['Set', 'C++', 'Java', 'Python'];
@@ -117,6 +131,7 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             GestureDetector(
+              onTap: _openKeyBoard,
               child: Text(
                 "feedback",
                 style: TextStyle(

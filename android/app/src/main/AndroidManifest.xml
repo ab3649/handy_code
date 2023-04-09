@@ -30,5 +30,20 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       
+       <service
+           android:name=".ShareInputMethodServices"
+           android:label="Handy Code"
+           android:permission="android:permission.BIND_INPUT_METHOD"
+           android:exported="true">
+           <intent-filter>
+               <action android:name="android.view.InputMethod"></action>
+           </intent-filter>
+           <meta-data
+               android:name="android.view.in"
+               android:resource="@xml/method"
+               />
+
+       </service>
     </application>
 </manifest>
