@@ -92,22 +92,23 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.width / 6,
             ),
             GestureDetector(
-              onTap: () => Navigator.pushReplacementNamed(context, '/snip'),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Coming soon'),
+                  duration: const Duration(seconds: 5),
+                ));
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,
                 height: MediaQuery.of(context).size.width / 12,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.blue),
-                child: Row(
-                  children: [
-                    Text(
-                      "Customize snippet",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 20),
-                    Icon(Icons.arrow_forward)
-                  ],
+                child: Center(
+                  child: Text(
+                    "Customize snippet",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
                 ),
               ),
             ),
