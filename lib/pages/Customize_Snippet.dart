@@ -31,7 +31,7 @@ class _SnipState extends State<Snip_page> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  '-Frequently Used Snippets-',
+                  '-This Feature is under development-',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ),

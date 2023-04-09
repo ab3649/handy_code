@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   String _selectedOption = '';
 
-  List<String> options = ['Set', 'C++', 'Java', 'Python'];
+  List<String> options = ['C++'];
   @override
   void initState() {
     super.initState();
@@ -57,87 +57,77 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30,
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 7.5,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  child: DropdownButton<String>(
-                    dropdownColor: Colors.lightBlue.shade200,
-                    value: _selectedOption,
-                    items: options.map((String option) {
-                      return DropdownMenuItem<String>(
-                        value: option,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 3.5,
-                            ),
-                            Text(option),
-                          ],
+            Container(
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: DropdownButton<String>(
+                dropdownColor: Colors.lightBlue.shade200,
+                value: _selectedOption,
+                items: options.map((String option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 3.5,
                         ),
-                        alignment: Alignment.center,
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        _selectedOption = newValue!;
-                      });
-                    },
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.lightBlue.shade200,
-                  ),
-                ),
-              ],
+                        Text(option),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                  );
+                }).toList(),
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedOption = newValue!;
+                  });
+                },
+                borderRadius: BorderRadius.circular(20),
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.lightBlue.shade200,
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.width / 6,
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 7.5,
+            GestureDetector(
+              onTap: () => Navigator.pushReplacementNamed(context, '/snip'),
+              child: Container(
+                width: MediaQuery.of(context).size.width / 1.5,
+                height: MediaQuery.of(context).size.width / 12,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.blue),
+                child: Row(
+                  children: [
+                    Text(
+                      "Customize snippet",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 20),
+                    Icon(Icons.arrow_forward)
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () => Navigator.pushReplacementNamed(context, '/snip'),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.blue),
-                    child: Center(
-                        child: Row(
-                      children: [
-                        SizedBox(width: 60),
-                        Text(
-                          "Customize snippet",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 20),
-                        Icon(Icons.arrow_forward)
-                      ],
-                    )),
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             GestureDetector(
               onTap: _openKeyBoard,
-              child: Text(
-                "feedback",
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: 20,
-                    color: Colors.blue.shade700),
+              child: Container(
+                width: MediaQuery.of(context).size.width / 1.5,
+                height: MediaQuery.of(context).size.width / 12,
+                child: Center(
+                  child: Text(
+                    "Set KeyBoard",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.red.shade400),
               ),
             )
           ],
