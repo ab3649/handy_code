@@ -24,7 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   String _selectedOption = '';
 
-  List<String> options = ['C++'];
+  List<String> options = ['C++', 'Java', 'Python'];
+
   @override
   void initState() {
     super.initState();
@@ -116,13 +117,18 @@ class _HomePageState extends State<HomePage> {
               height: 30,
             ),
             GestureDetector(
-              onTap: _openKeyBoard,
+              onTap: () {
+                if (_selectedOption == 'C++') {
+                  Navigator.pushReplacementNamed(context, '/cpp');
+                } else if (_selectedOption == 'Java') {
+                } else if (_selectedOption == 'Python') {}
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,
                 height: MediaQuery.of(context).size.width / 12,
                 child: Center(
                   child: Text(
-                    "Set KeyBoard",
+                    "Open KeyBoard",
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),

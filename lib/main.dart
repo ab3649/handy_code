@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:handy_code/keyboards/CPP/keyboard.dart';
+
 import 'package:handy_code/pages/home_screen.dart';
 import 'package:handy_code/pages/splash_screen.dart';
 import 'package:handy_code/pages/Customize_Snippet.dart';
@@ -23,7 +25,8 @@ class MainApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/splash': (context) => SplashScreen(),
         '/snip': (context) => Snip_page(),
-        '/edit': (context) => SnippetScreen()
+        '/edit': (context) => SnippetScreen(),
+        '/cpp': (context) => CustomKeyboardExample(),
       },
     );
   }
