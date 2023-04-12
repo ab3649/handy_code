@@ -73,14 +73,9 @@ class PythonKeyBoard extends StatelessWidget {
   Widget boilercode() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """import java.util.*;
-class    
-{
-  public static void main(String args[])
-  {
-    Scanner sc = new Scanner(System.in);
-    
-  }  
+        textEditingController.text += """import sys
+        import pyforest
+        def main():
 """;
       },
       child: Text('Boiler cd'),
@@ -90,9 +85,7 @@ class
   Widget ifst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """if ( ) {
-  
-}
+        textEditingController.text += """if( ) :
 """;
       },
       child: Text('if'),
@@ -102,9 +95,7 @@ class
   Widget elsest() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """else ( ) {
-  
-}
+        textEditingController.text += """else :
 """;
       },
       child: Text('else'),
@@ -114,9 +105,7 @@ class
   Widget forst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """for( ; ; ){  
-   
-}
+        textEditingController.text += """for( in range ( ) ) : 
 """;
       },
       child: Text('for'),
@@ -126,8 +115,7 @@ class
   Widget whilest() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """while () {  
-} 
+        textEditingController.text += """while () :
 """;
       },
       child: Text('while'),
@@ -137,7 +125,9 @@ class
   Widget inpst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """sc.nextInt();
+        textEditingController.text += """
+        sval = input().split("")
+        my_list = [int(i) for i in imput().split(" ")]
 """;
       },
       child: Text('input'),
@@ -147,7 +137,7 @@ class
   Widget outst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """System.out.println(" ");
+        textEditingController.text += """print(" ",)
 """;
       },
       child: Text('output'),
@@ -157,19 +147,14 @@ class
   Widget switchst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """switch(/*conditional-expression*/){    
-case /*value1*/:    
- // code    
- break;    
-case /*value2*/:    
- // code    
- break; 
-default:     
- /*code*/ ;    
-} 
+        textEditingController.text += """if():
+        
+        elif():
+        
+        else:
 """;
       },
-      child: Text('switch'),
+      child: Text('if-elif'),
     );
   }
 
@@ -177,9 +162,7 @@ default:
     return ElevatedButton(
       onPressed: () {
         textEditingController.text +=
-        """/*return_type  function_name(parameters)*/ {  
- // code
-}
+        """def _name_( ):
 """;
       },
       child: Text('function'),
@@ -189,8 +172,8 @@ default:
   Widget imprt() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """import java.util.*;
-""";
+        textEditingController.text += """import pyforest
+        """;
       },
       child: Text('import'),
     );
@@ -199,9 +182,8 @@ default:
   Widget klaus() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """/*<access specifier>*/ class /*<class name>*/ {
-    //code
-}
+        textEditingController.text += """class _name_ :
+        def __init__(self, ):
 """;
       },
       child: Text('class'),
@@ -211,37 +193,34 @@ default:
   Widget intrfac() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """interface  /*<interface_name>*/{
-   /*member Initialisation*/ ;
-}
+        textEditingController.text += """my_dict = {my_list: [] for my_list in range( )}
 """;
       },
-      child: Text('class'),
+      child: Text('dictionary'),
     );
   }
 
   Widget absclas() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """abstract class /*<class name>*/ {
-  //code
-};
+        textEditingController.text += """my_tuple = ()([int(i) for i in imput().split(" ")])
 """;
       },
-      child: Text('abs_class'),
+      child: Text('tuple'),
     );
   }
 
   Widget excepst() {
     return ElevatedButton(
       onPressed: () {
-        textEditingController.text += """try {
-  // Block of code to try
-  throw exception; 
-}
-catch () {
-  // Block of code to handle errors
-}
+        textEditingController.text += """try:
+  //try code
+except:
+  //except code
+else:
+  //else code
+finally:
+  //code
 """;
       },
       child: Text('excption'),
