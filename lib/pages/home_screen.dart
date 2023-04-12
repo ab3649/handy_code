@@ -121,7 +121,10 @@ class _HomePageState extends State<HomePage> {
                 if (_selectedOption == 'C++') {
                   Navigator.pushReplacementNamed(context, '/cpp');
                 } else if (_selectedOption == 'Java') {
-                } else if (_selectedOption == 'Python') {}
+                  Navigator.pushReplacementNamed(context, '/java');
+                } else if (_selectedOption == 'Python') {
+                  Navigator.pushReplacementNamed(context, '/python');
+                }
               },
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,
