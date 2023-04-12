@@ -9,7 +9,6 @@ class Snip_page extends StatefulWidget {
 
 class _SnipState extends State<Snip_page> {
   List Snip_List = [];
-  int count = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +26,10 @@ class _SnipState extends State<Snip_page> {
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  '-This Feature is under development-',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                ),
+            Center(
+              child: Text(
+                '-Frequently Used Snippets-',
+                style: TextStyle(color: Colors.black, fontSize: 20),
               ),
             ),
             Divider(
@@ -51,9 +47,8 @@ class _SnipState extends State<Snip_page> {
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
-                  count++;
                   setState(() {});
-                  Snip_List.add(Snip(count: count));
+                  Snip_List.add(Snip());
                 },
                 child: Text('Add Snippet')),
           ],
@@ -64,8 +59,7 @@ class _SnipState extends State<Snip_page> {
 }
 
 class Snip extends StatelessWidget {
-  final int count;
-  const Snip({Key? key, required this.count}) : super(key: key);
+  const Snip({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +73,7 @@ class Snip extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$count. Snippet $count',
+                  '1. Snippet',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -87,13 +81,14 @@ class Snip extends StatelessWidget {
                 ),
                 GestureDetector(
                   //onTap: ""Edit Snippet"",
-                  onTap: () {
+                  onTap: (){
                     Navigator.pushReplacementNamed(context, '/edit');
                   },
                   child: Icon(
                     Icons.edit,
                     color: Colors.black,
-                    size: 25,
+                    size: 15,
+
                   ),
                 )
               ],

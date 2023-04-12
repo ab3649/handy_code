@@ -93,12 +93,7 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.width / 6,
             ),
             GestureDetector(
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text('Coming soon'),
-                  duration: const Duration(seconds: 5),
-                ));
-              },
+                onTap: () => Navigator.pushReplacementNamed(context, '/snip'),
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,
                 height: MediaQuery.of(context).size.width / 12,

@@ -1,35 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:handy_code/pages/home_factor.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Add Snippet',
-      home: SnippetScreen(),
-    );
-  }
-}
-
-class SnippetScreen extends StatelessWidget {
+class SnippetScreen extends StatefulWidget {
   const SnippetScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final FocusNode _titleFocusNode = FocusNode();
-    final FocusNode _snippetFocusNode = FocusNode();
+  _SnippetScreenState createState() => _SnippetScreenState();
+}
 
+class _SnippetScreenState extends State<SnippetScreen> {
+  bool isKeyboardVisible = false;
+  final FocusNode _titleFocusNode = FocusNode();
+  final FocusNode _snippetFocusNode = FocusNode();
+  final TextEditingController _titleTextController = TextEditingController();
+  final TextEditingController _snippetTextController = TextEditingController();
+  TextEditingController mycontrol = TextEditingController();
+  FocusNode myfocus = FocusNode();
+
+  void updateTitleText(String value) {
+    setState(() {
+      _titleTextController.text += value;
+    });
+  }
+  void updateSnippetText(String value) {
+    setState(() {
+      _snippetTextController.text += value;
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    myfocus = _titleFocusNode;
+    mycontrol = _titleTextController;
+  }
+  @override
+  void dispose() {
+    _titleFocusNode.dispose();
+    _snippetFocusNode.dispose();
+    _titleTextController.dispose();
+    _snippetTextController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Snippet'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/snip');
-            // Handle going back to the previous screen
-          },
-        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.download_done_outlined),
+            onPressed: () {
+              //
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              setState(() {
+                isKeyboardVisible = !isKeyboardVisible;
+              });
+            },
+          ),
+          Visibility(
+            visible: isKeyboardVisible,
+            child: IconButton(
+              icon: Icon(Icons.keyboard_hide),
+              onPressed: () {
+                setState(() {
+                  isKeyboardVisible = false;
+                });
+              },
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -45,6 +90,7 @@ class SnippetScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
                     focusNode: _titleFocusNode,
+                    controller: _titleTextController,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -53,6 +99,11 @@ class SnippetScreen extends StatelessWidget {
                       hintText: 'Enter title',
                       border: InputBorder.none,
                     ),
+                    onTap: () {
+                      myfocus = _titleFocusNode;
+                      mycontrol = _titleTextController;
+                      updateTitleText;
+                    },
                   ),
                 ),
               ),
@@ -76,35 +127,23 @@ class SnippetScreen extends StatelessWidget {
                                 children: [
                                   TextField(
                                     focusNode: _snippetFocusNode,
+                                    controller: _snippetTextController,
                                     maxLines: null,
                                     decoration: InputDecoration(
                                       hintText: 'Enter your code snippet here',
                                       border: InputBorder.none,
                                     ),
+                                    onTap: () {
+                                      print("Changed");
+                                      myfocus = _snippetFocusNode;
+                                      mycontrol = _snippetTextController;
+                                      updateSnippetText;
+                                    },
                                   ),
                                   SizedBox(height: 16),
                                   Divider(thickness: 2),
                                 ],
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 16),
-                            child: FloatingActionButton.extended(
-                              onPressed: () {
-// Handle adding the snippet to storage or database
-                                final snippet = 'Snippet';
-                                print('Snippet added: $snippet');
-//Close the Keyboard
-                                _titleFocusNode.unfocus();
-                                _snippetFocusNode.unfocus();
-                              },
-                              label: Text('Add Snippet'),
-                              icon: Icon(Icons.add),
-                              elevation: 4,
-                              backgroundColor: Colors.blue,
-                              foregroundColor: Colors.white,
                             ),
                           ),
                         ],
@@ -113,6 +152,15 @@ class SnippetScreen extends StatelessWidget {
                   },
                 ),
               ),
+              // Custom keyboard card
+              Visibility(
+                visible: isKeyboardVisible,
+                child: SizedBox(
+                  height: 250.0,
+                  child: CustomKeyboardCard(controller: mycontrol,focusNode: myfocus,),
+                ),
+              ),
+              // Toggle keyboard button
             ],
           ),
         ),
